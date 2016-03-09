@@ -210,7 +210,7 @@ getHolidaysOf = (y, furikae) ->
     クラス定義
 ###
 
-target = (module.exports ? this.JapaneseHolidays={})
+target = (module?.exports ? this.JapaneseHolidays={})
 
 target.getHolidaysOf = (y, furikae) ->
     # データを整形する

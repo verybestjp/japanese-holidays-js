@@ -1,6 +1,6 @@
 {
   "name": "japanese-holidays",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "homepage": "https://github.com/osamutake/japanese-holidays-js",
   "description": "Provides utilities to manipulate japanese holidays.",
   "main": "./index.js",
