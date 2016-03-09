@@ -3,6 +3,9 @@
   https://gist.github.com/Songmu/703311/ee19179d22d58ba1e6cd11b71c0de84684fc03ae
 */
 
+var assert = require('assert');
+var Holidays = require('../lib/japanese-holidays.js');
+
 /////////////////////////////////////////////////////// ここから japanese.holiday.js
 
 //祝日を求めるjavascript 昔書いたやつ
@@ -225,7 +228,7 @@ function days_in_month(year, month) {
 // 指定曜日の日付一覧を配列で返す
 function weekdays(year, mon, wday) {
   var week_days = [];
-  var wd = (new Date(year, mon-1, 1)).getDay();
+  var wd = Holidays.getJDay(Holidays.jDate(year, mon-1, 1));
   // 指定曜日の最初の日付(カレンダー的に空欄の場合は0以下の値となる)
   var start = 1 - wd + wday;
   var last_day = days_in_month(year, mon);
@@ -305,7 +308,7 @@ function get_furikae_days(year, mon, holidays_tbl){
     h_day = parseInt(h_day);
     var name = holidays_tbl[h_day];
     // 祝日が日曜日かチェック
-    var wday = (new Date(year, mon-1, h_day)).getDay();
+    var wday = Holidays.getJDay(Holidays.jDate(year, mon-1, h_day));
     if (wday == 0) {
       var furikae_day = h_day + 1;
       if (year >= 2007) {
@@ -360,7 +363,7 @@ function getHolidays(year, mon, furikae) {
     for(var day in holidays) {
       day = parseInt(day);
       if ( holidays[day + 2] && !holidays[day + 1]) {
-        var wday =  (new Date(year, mon-1, day)).getDay();
+        var wday =  Holidays.getJDay(Holidays.jDate(year, mon-1, day));
         // Aが日曜の時は平日Bはただの振り替え休日
         // Bが日曜の場合も国民の休日とはならない
         if(wday == 0 || wday == 6){
@@ -417,9 +420,6 @@ function _clone(obj){//shallow copy
 
 /////////////////////////////////////////////////////// ここまで japanese.holiday.js
 
-var assert = require('assert');
-var Holidays = require('../lib/japanese-holidays.js');
-
 for(var y=1949; y<2100; y++){
 
   // japanese.holiday.js の祝日が正しく祝日として判定されること
@@ -428,14 +428,14 @@ for(var y=1949; y<2100; y++){
     Object.keys(h).forEach(function(d){
 
       // japanese.holiday.js のバグ
-      if( Date(y,m-1,d)==Date(1973,2-1,12) || // 振替休日法施行前
-          Date(y,m-1,d)==Date(2074,9-1,23) || // 少しイレギュラーな秋分
-          Date(y,m-1,d)==Date(2074,9-1,24) ) 
+      if( (Holidays.jDate(y,m-1,d)-Holidays.jDate(1973,2-1,12)==0) || // 振替休日法施行前
+          (Holidays.jDate(y,m-1,d)-Holidays.jDate(2074,9-1,23)==0) || // 少しイレギュラーな秋分
+          (Holidays.jDate(y,m-1,d)-Holidays.jDate(2074,9-1,24)==0) ) 
         return;
 
-      assert(Holidays.isHoliday(new Date(y,m-1,d))===h[d],
-        new Date(y,m-1,d) + " " +
-        Holidays.isHoliday(new Date(y,m-1,d))+ " " +h[d]);
+      assert(Holidays.isHoliday(Holidays.jDate(y,m-1,d))===h[d],
+        Holidays.jDate(y,m-1,d) + " " +
+        Holidays.isHoliday(Holidays.jDate(y,m-1,d))+ " " +h[d]);
     });
   }
 

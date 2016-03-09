@@ -1334,17 +1334,18 @@ const Holidays = require('../lib/japanese-holidays.js');
 
 // holidays-jp の祝日が正しく祝日として判定されること
 data.forEach(function(h){
-  assert(Holidays.isHoliday(new Date(h[0])) === h[1]);
+  assert(Holidays.isHoliday(new Date(h[0])) === h[1],
+    Holidays.isHoliday(new Date(h[0])) + " " + h[1]);
 });
 
 // 計算した祝日が holidays-jp でも祝日であること
 for(var y=1970; y<=2050; y++){
   Holidays.getHolidaysOf(y).forEach(function(h){
-    var day = new Date(y, h.month-1, h.date);
+    var day = Holidays.jDate(y, h.month-1, h.date);
     var found = false;
     data.forEach(function(d){
-      if(d[0] === day.toString()){
-        assert(d[1]===h.name);
+      if(new Date(d[0]) - day == 0){
+        assert(d[1]===h.name, d[1] + " " + h.name);
         found = true;
       }
     });

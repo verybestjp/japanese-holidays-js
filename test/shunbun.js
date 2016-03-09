@@ -41,17 +41,21 @@ var data = [
 const assert = require('assert');
 const Holidays = require('../lib/japanese-holidays.js');
 
-const shunbun = Holidays.__forTest.shunbun;
+const shunbun = Holidays.__forTest.shunbunWithTime;
 
 data.forEach(function(entry){
   //           from           to
   for (var y = entry[0]; y <= entry[1]; y += 4){
     for (var i = 0; i < 4; i++){
       var s = shunbun(y+i);
-      assert( s.getDate() === entry[2+i],
+
+      if (Holidays.getJDate(s) !== entry[2+i])
+        console.log(y+i, entry[2+i], Holidays.getJDate(s), 
+                    Holidays.getJHours(s), Holidays.getJMinutes(s));
+
+      assert( Holidays.getJDate(s) === entry[2+i],
         "Shunbun on " + (y+i) + " should be " + entry[2+i] + 
-                                " but was " + s.getDate());
+                                " but was " + Holidays.getJDate(s));
     }
   }
 });
-
