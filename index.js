@@ -1,3 +1,3 @@
-var JapaneseHolidays = require('lib/japanese_holidays.js');
+var JapaneseHolidays = require('./lib/japanese-holidays.js');
 
-exports = JapaneseHolidays;
+module.exports = JapaneseHolidays;
