@@ -13,7 +13,8 @@
     "url": "https://github.com/osamutake/japanese-holidays-js"
   },
   "devDependencies": {
-    "coffee-script": ">= 1.10"
+    "coffee-script": ">= 1.10",
+    "uglify-js": "*"
   },
   "author": "Osamu Takeuchi <osamu@big.jp>",
   "license": "MIT"
