@@ -3,11 +3,6 @@
     日本の休日を JavaScript で計算するためのライブラリ
                          Osamu Takeuchi <osamu@big.jp>
 
-    ChangeLog
-        2013.04.17 初出
-        2016.03.09 山の日を追加、元旦→元日、春分・秋分をより正確に、npm化
-                   タイムゾーンに対応
-
 ###
 
 "use strict"
@@ -226,6 +221,9 @@ target.getHolidaysOf = (y, furikae) ->
     result
 
 isHoliday = (date, furikae) ->
+    getHolidaysOf(date.getFullYear(), furikae)[ [date.getMonth()+1, date.getDate()] ]
+
+isHolidayAt = (date, furikae) ->
     getHolidaysOf(getJFullYear(date), furikae)[ [getJMonth(date)+1, getJDate(date)] ]
 
 target.isHoliday = isHoliday

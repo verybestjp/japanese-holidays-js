@@ -1,14 +1,19 @@
 # japanese-holidays-js [![Build Status](https://travis-ci.org/osamutake/japanese-holidays-js.svg?branch=master)](https://travis-ci.org/osamutake/japanese-holidays-js)
 
-日本の休日を JavaScript で計算するためのライブラリ
+[![NPM](https://nodei.co/npm/japanese-holidays.png?downloads=true&downloadRank=true)](https://www.npmjs.com/package/japanese-holidays)
 
-## Installation
 
-```
-npm install japanese-holidays
-```
+日本の休日を JavaScript で計算するためのライブラリです。
 
-## Usage
+## Use with Node
+
+    $ npm install japanese-holidays
+
+## Use on the Web
+
+    <script src="https://raw.githubusercontent.com/osamutake/japanese-holidays-js/master/dist/japanese-holidays.min.js"></script>
+
+# 使い方
 
 ### JapaneseHolidays.isHoliday(date, furikae = true)
 
@@ -79,6 +84,29 @@ Wikipedia の
 
 結果として、1600年～2399年 の範囲で上記 Wikipedia のページにあった日付を
 再現できています。
+
+## タイムゾーンについて
+
+```JapaneseHolidays.isHoliday``` は与えられた「時刻」ではなく「日付」を元に祝日を判定します。
+例えばニュージーランドで
+
+```javascript
+    JapaneseHolidays.isHoliday(new Date(2016,3,8)); 
+```
+
+とすると、ニュージーランド時間の ```2016-03-08 00:00:00``` が関数に渡されます。
+これは日本時間では ```2016-03-07 21:00:00``` を表しますが、
+```isHoliday``` は与えられた日付 3/8 が休日かどうかを判定するということです。
+
+多くの場合これは利用者の意図するところだと思います。
+
+万一、与えた「時刻」において日本で休日かどうかを判定する必要があれば、
+
+```javascript
+    JapaneseHolidays.isHolidayAt(new Date(2016,3,8)); 
+```
+
+を呼んでください。例えばニュージーランドでこれを呼べば、3/7 が休日かどうかが判定されます。
 
 ## License
 
