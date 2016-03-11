@@ -231,7 +231,7 @@ function days_in_month(year, month) {
 // 指定曜日の日付一覧を配列で返す
 function weekdays(year, mon, wday) {
   var week_days = [];
-  var wd = Holidays.getJDay(Holidays.jDate(year, mon-1, 1));
+  var wd = (new Date(year, mon-1, 1)).getDay();
   // 指定曜日の最初の日付(カレンダー的に空欄の場合は0以下の値となる)
   var start = 1 - wd + wday;
   var last_day = days_in_month(year, mon);
@@ -311,7 +311,7 @@ function get_furikae_days(year, mon, holidays_tbl){
     h_day = parseInt(h_day);
     var name = holidays_tbl[h_day];
     // 祝日が日曜日かチェック
-    var wday = Holidays.getJDay(Holidays.jDate(year, mon-1, h_day));
+    var wday = (new Date(year, mon-1, h_day)).getDay();
     if (wday == 0) {
       var furikae_day = h_day + 1;
       if (year >= 2007) {
@@ -366,7 +366,7 @@ function getHolidays(year, mon, furikae) {
     for(var day in holidays) {
       day = parseInt(day);
       if ( holidays[day + 2] && !holidays[day + 1]) {
-        var wday =  Holidays.getJDay(Holidays.jDate(year, mon-1, day));
+        var wday =  (new Date(year, mon-1, day)).getDay();
         // Aが日曜の時は平日Bはただの振り替え休日
         // Bが日曜の場合も国民の休日とはならない
         if(wday == 0 || wday == 6){
