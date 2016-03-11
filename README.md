@@ -33,13 +33,14 @@ furikae に false を指定すると振替休日を除きます。
 Node:
 ```javascript
 // デバッグ用のソースマップサポート
+// 例外発生時に CoffeeScript の行番号を出すことができる
 require('source-map-support').install();
 
 // ここからが本文
-var Holidays = require('japanese-holidays');
+var JapaneseHolidays = require('japanese-holidays');
 
 var today = new Date();
-var holiday = Holidays.isHoliday(today);
+var holiday = JapaneseHolidays.isHoliday(today);
 if(holiday) {
     console.log("今日は " + holiday + " です");
 } else {
@@ -49,10 +50,6 @@ if(holiday) {
 
 On the web:
 ```javascript
-<!-- デバッグ用のソースマップサポート -->
-<script src="https://cdn.rawgit.com/evanw/node-source-map-support/master/browser-source-map-support.js"></script>
-
-<!-- ここからが本文 -->
 <script src="https://cdn.rawgit.com/osamutake/japanese-holidays-js/master/lib/japanese-holidays.min.js"></script>
 <script>
 var today = new Date();
@@ -76,13 +73,14 @@ furikae に false を指定すると、振替休日および国民の休日を�
 Node:
 ```javascript
 // デバッグ用のソースマップサポート
+// 例外発生時に CoffeeScript の行番号を出すことができる
 require('source-map-support').install();
 
 // ここからが本文
-var Holidays = require('japanese-holidays');
+var JapaneseHolidays = require('japanese-holidays');
 
 var today = new Date();
-var holidays = Holidays.getHolidaysOf( today.getFullYear() );
+var holidays = JapaneseHolidays.getHolidaysOf( today.getFullYear() );
 holidays.forEach(function(holiday) {
     console.log(
         today.getFullYear() + "年" +
@@ -95,10 +93,6 @@ holidays.forEach(function(holiday) {
 
 On the web:
 ```javascript
-<!-- デバッグ用のソースマップサポート -->
-<script src="https://cdn.rawgit.com/evanw/node-source-map-support/master/browser-source-map-support.js"></script>
-
-<!-- ここからが本文 -->
 <script src="https://cdn.rawgit.com/osamutake/japanese-holidays-js/master/lib/japanese-holidays.min.js"></script>
 <script>
 var today = new Date();
