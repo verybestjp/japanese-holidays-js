@@ -5,13 +5,18 @@
 
 日本の休日を JavaScript で計算するためのライブラリです。
 
+ソースは coffeescript で書かれており、それをコンパイルした物が lib に入っています。
+ご利用の際には lib 内の japanese-holidays.js や japanese-holidays.min.js を使ってください。
+
+lib/ 以下のファイルは自動生成された物です。これらを編集しないようにしてください。
+
 ## Use with Node
 
     $ npm install japanese-holidays
 
 ## Use on the Web
 
-    <script src="https://raw.githubusercontent.com/osamutake/japanese-holidays-js/master/dist/japanese-holidays.min.js"></script>
+    <script src="https://cdn.rawgit.com/osamutake/japanese-holidays-js/master/lib/japanese-holidays.min.js"></script>
 
 # 使い方
 
@@ -24,8 +29,13 @@
 furikae に false を指定すると振替休日を除きます。
 
 内部ではキャッシュした値を使って計算するため繰り返し呼ぶ際にはとても高速に動作します。
- 
+
+Node:
 ```javascript
+// デバッグ用のソースマップサポート
+require('source-map-support').install();
+
+// ここからが本文
 var Holidays = require('japanese-holidays');
 
 var today = new Date();
@@ -37,6 +47,24 @@ if(holiday) {
 }
 ```
 
+On the web:
+```javascript
+<!-- デバッグ用のソースマップサポート -->
+<script src="https://cdn.rawgit.com/evanw/node-source-map-support/master/browser-source-map-support.js"></script>
+
+<!-- ここからが本文 -->
+<script src="https://cdn.rawgit.com/osamutake/japanese-holidays-js/master/lib/japanese-holidays.min.js"></script>
+<script>
+var today = new Date();
+var holiday = JapaneseHolidays.isHoliday(today);
+if(holiday) {
+    alert("今日は " + holiday + " です");
+} else {
+    alert("今日は祝日ではありません");
+}
+</script>
+```
+
 ### JapaneseHolidays.getHolidaysOf(year, furikae = true)
     
 指定された年の休日を配列にして返します。
@@ -45,19 +73,46 @@ if(holiday) {
 
 furikae に false を指定すると、振替休日および国民の休日を除きます。
 
+Node:
 ```javascript
+// デバッグ用のソースマップサポート
+require('source-map-support').install();
+
+// ここからが本文
 var Holidays = require('japanese-holidays');
 
 var today = new Date();
 var holidays = Holidays.getHolidaysOf( today.getFullYear() );
-for(holiday in holidays) {
+holidays.forEach(function(holiday) {
     console.log(
         today.getFullYear() + "年" +
         holiday.month + "月" + 
         holiday.date + "日は " +
         holiday.name + " です"
     );
-}
+});
+```
+
+On the web:
+```javascript
+<!-- デバッグ用のソースマップサポート -->
+<script src="https://cdn.rawgit.com/evanw/node-source-map-support/master/browser-source-map-support.js"></script>
+
+<!-- ここからが本文 -->
+<script src="https://cdn.rawgit.com/osamutake/japanese-holidays-js/master/lib/japanese-holidays.min.js"></script>
+<script>
+var today = new Date();
+var holidays = JapaneseHolidays.getHolidaysOf( today.getFullYear() );
+holidays.forEach(function(holiday) {
+    document.write(
+        today.getFullYear() + "年" +
+        holiday.month + "月" + 
+        holiday.date + "日は " +
+        holiday.name + " です<br>"
+    );
+});
+</script>
+
 ```
 
 #### Properties
