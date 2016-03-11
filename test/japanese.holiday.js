@@ -431,14 +431,14 @@ for(var y=1949; y<2100; y++){
     Object.keys(h).forEach(function(d){
 
       // japanese.holiday.js のバグ
-      if( (Holidays.jDate(y,m-1,d)-Holidays.jDate(1973,2-1,12)==0) || // 振替休日法施行前
-          (Holidays.jDate(y,m-1,d)-Holidays.jDate(2074,9-1,23)==0) || // 少しイレギュラーな秋分
-          (Holidays.jDate(y,m-1,d)-Holidays.jDate(2074,9-1,24)==0) ) 
+      if( (new Date(y,m-1,d)-new Date(1973,2-1,12)==0) || // 振替休日法施行前
+          (new Date(y,m-1,d)-new Date(2074,9-1,23)==0) || // 少しイレギュラーな秋分
+          (new Date(y,m-1,d)-new Date(2074,9-1,24)==0) ) 
         return;
 
-      assert(Holidays.isHoliday(Holidays.jDate(y,m-1,d))===h[d],
-        Holidays.jDate(y,m-1,d) + " " +
-        Holidays.isHoliday(Holidays.jDate(y,m-1,d))+ " " +h[d]);
+      assert(Holidays.isHoliday(new Date(y,m-1,d))===h[d],
+        new Date(y,m-1,d) + " " +
+        Holidays.isHoliday(new Date(y,m-1,d))+ " " +h[d]);
     });
   }
 

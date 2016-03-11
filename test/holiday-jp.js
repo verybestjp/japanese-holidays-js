@@ -1341,7 +1341,7 @@ data.forEach(function(h){
 // 計算した祝日が holidays-jp でも祝日であること
 for(var y=1970; y<=2050; y++){
   Holidays.getHolidaysOf(y).forEach(function(h){
-    var day = Holidays.jDate(y, h.month-1, h.date);
+    var day = new Date(y, h.month-1, h.date);
     var found = false;
     data.forEach(function(d){
       if(new Date(d[0]) - day == 0){
