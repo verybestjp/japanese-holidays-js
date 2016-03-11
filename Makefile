@@ -12,11 +12,11 @@ lib/japanese-holidays.min.js: src/japanese-holidays.coffee
 		--source-map-url japanese-holidays.min.js.map \
 		-o lib/japanese-holidays.min.js \
 		--mangle all
-	# Why is this needed?
+	@# Why is this needed?
 	@sed -i -E 's/"sources":\["\.\.\//"sourceRoot":"..","sources":["/' \
 		lib/japanese-holidays.min.js.map
 
-test: lib/japanese-holidays.js
+test: all
 	@node test/shunbun.js
 	@node test/shubun.js
 	@node test/japanese.holiday.js

@@ -424,7 +424,6 @@ function _clone(obj){//shallow copy
 /////////////////////////////////////////////////////// ここまで japanese.holiday.js
 
 for(var y=1949; y<2100; y++){
-
   // japanese.holiday.js の祝日が正しく祝日として判定されること
   for(var m=1; m<=12; m++) {
     var h = getHolidays(y,m,true);

@@ -116,7 +116,7 @@ furikaeHoliday = (holiday) ->
     # 日曜日なので一日ずらす
     furikae = shiftDate(holiday, 0, 0, 1)
     # ずらした月曜日が休日でなければ振替休日
-    if !isHoliday(furikae, false)
+    if !isHolidayAt(furikae, false)
         return furikae
     # 旧振り替え制度では１日以上ずらさない
     if holiday < jDate(2007, 1-1,  1)
@@ -124,7 +124,7 @@ furikaeHoliday = (holiday) ->
     loop
         # 振り替えた結果が休日だったら１日ずつずらす
         furikae = shiftDate(furikae, 0, 0, 1)
-        if !isHoliday(furikae, false)
+        if !isHolidayAt(furikae, false)
             return furikae
 
 
@@ -134,12 +134,12 @@ kokuminHoliday = (holiday) ->
     if getJFullYear(holiday) < 1988 # 制定前
         return null
     # ２日後が振り替え以外の祝日か
-    if !isHoliday(shiftDate(holiday, 0, 0, 2), false)
+    if !isHolidayAt(shiftDate(holiday, 0, 0, 2), false)
         return null
     sunday = 0
     monday = 1
     kokumin = shiftDate(holiday, 0, 0, 1)
-    if isHoliday(kokumin, false) or # 次の日が祝日
+    if isHolidayAt(kokumin, false) or # 次の日が祝日
        getJDay(kokumin)==sunday or  # 次の日が日曜
        getJDay(kokumin)==monday     # 次の日が月曜（振替休日になる）
         return null
@@ -227,6 +227,7 @@ isHolidayAt = (date, furikae) ->
     getHolidaysOf(getJFullYear(date), furikae)[ [getJMonth(date)+1, getJDate(date)] ]
 
 target.isHoliday = isHoliday
+target.isHolidayAt = isHolidayAt
 
 target.shiftDate = shiftDate
 target.u2j = u2j
