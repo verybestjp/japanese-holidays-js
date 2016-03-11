@@ -1,6 +1,9 @@
 /*
   japanese.holiday.js と比較する
   https://gist.github.com/Songmu/703311/ee19179d22d58ba1e6cd11b71c0de84684fc03ae
+  
+  japanese.holiday.js は Songmu さんが gist へ公開している著作物です
+  テスト用に少しだけ改変して取り込ませていただいています
 */
 
 var assert = require('assert');
