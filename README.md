@@ -16,7 +16,7 @@ lib/ 以下のファイルは自動生成された物です。これらを編集
 
 ## Use on the Web
 
-    <script src="https://cdn.rawgit.com/osamutake/japanese-holidays-js/master/lib/japanese-holidays.min.js"></script>
+    <script src="https://cdn.rawgit.com/osamutake/japanese-holidays-js/v1.0.6/lib/japanese-holidays.min.js"></script>
 
 # 使い方
 
@@ -50,7 +50,7 @@ if(holiday) {
 
 On the web:
 ```javascript
-<script src="https://cdn.rawgit.com/osamutake/japanese-holidays-js/master/lib/japanese-holidays.min.js"></script>
+<script src="https://cdn.rawgit.com/osamutake/japanese-holidays-js/v1.0.6/lib/japanese-holidays.min.js"></script>
 <script>
 var today = new Date();
 var holiday = JapaneseHolidays.isHoliday(today);
@@ -93,7 +93,7 @@ holidays.forEach(function(holiday) {
 
 On the web:
 ```javascript
-<script src="https://cdn.rawgit.com/osamutake/japanese-holidays-js/master/lib/japanese-holidays.min.js"></script>
+<script src="https://cdn.rawgit.com/osamutake/japanese-holidays-js/v1.0.6/lib/japanese-holidays.min.js"></script>
 <script>
 var today = new Date();
 var holidays = JapaneseHolidays.getHolidaysOf( today.getFullYear() );
@@ -140,7 +140,7 @@ Wikipedia の
 例えばニュージーランドで
 
 ```javascript
-    JapaneseHolidays.isHoliday(new Date(2016,3,8)); 
+    JapaneseHolidays.isHoliday(new Date(2016,3-1,8)); 
 ```
 
 とすると、ニュージーランド時間の ```2016-03-08 00:00:00``` が関数に渡されます。
@@ -152,7 +152,7 @@ Wikipedia の
 万一、与えた「時刻」において日本で休日かどうかを判定する必要があれば、
 
 ```javascript
-    JapaneseHolidays.isHolidayAt(new Date(2016,3,8)); 
+    JapaneseHolidays.isHolidayAt(new Date(2016,3-1,8)); 
 ```
 
 を呼んでください。例えばニュージーランドでこれを呼べば、3/7 が休日かどうかが判定されます。
