@@ -81,12 +81,14 @@ definition = [
     [ "成人の日",                 simpleHoliday( 1, 15), 1949, 1999 ],
     [ "成人の日",                 happyMonday(   1,  2), 2000       ],
     [ "建国記念の日",             simpleHoliday( 2, 11), 1967       ],
+    [ "天皇誕生日",               simpleHoliday( 2, 23), 2020       ],
     [ "昭和天皇の大喪の礼",       simpleHoliday( 2, 24), 1989, 1989 ],
     [ "春分の日",                 shunbun,               1949       ],
     [ "皇太子明仁親王の結婚の儀", simpleHoliday( 4, 10), 1959, 1959 ],
     [ "天皇誕生日",               simpleHoliday( 4, 29), 1949, 1988 ],
     [ "みどりの日",               simpleHoliday( 4, 29), 1989, 2006 ],
     [ "昭和の日",                 simpleHoliday( 4, 29), 2007       ],
+    [ "即位の日",                 simpleHoliday( 5,  1), 2019, 2019 ],
     [ "憲法記念日",               simpleHoliday( 5,  3), 1949       ],
     [ "みどりの日",               simpleHoliday( 5,  4), 2007       ],
     [ "こどもの日",               simpleHoliday( 5,  5), 1949       ],
@@ -99,10 +101,11 @@ definition = [
     [ "秋分の日",                 shubun,                1948       ],
     [ "体育の日",                 simpleHoliday(10, 10), 1966, 1999 ],
     [ "体育の日",                 happyMonday(  10,  2), 2000       ],
+    [ "即位礼正殿の儀",           simpleHoliday(10, 22), 2019, 2019 ],
     [ "文化の日",                 simpleHoliday(11,  3), 1948       ],
     [ "即位礼正殿の儀",           simpleHoliday(11, 12), 1990, 1990 ],
     [ "勤労感謝の日",             simpleHoliday(11, 23), 1948       ],
-    [ "天皇誕生日",               simpleHoliday(12, 23), 1989       ],
+    [ "天皇誕生日",               simpleHoliday(12, 23), 1989, 2018 ],
 ]
 
 
