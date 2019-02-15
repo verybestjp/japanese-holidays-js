@@ -8,10 +8,10 @@ lib/japanese-holidays.js: src/japanese-holidays.coffee
 lib/japanese-holidays.min.js: src/japanese-holidays.coffee
 	@node_modules/uglify-js/bin/uglifyjs lib/japanese-holidays.js -c \
 		--in-source-map lib/japanese-holidays.js.map \
-		--source-map lib/japanese-holidays.min.js.map \
-		--source-map-url japanese-holidays.min.js.map \
+		--source-map filename=lib/japanese-holidays.min.js.map \
+		--source-map url=japanese-holidays.min.js.map \
 		-o lib/japanese-holidays.min.js \
-		--mangle all
+		--mangle --mangle-props
 	@# Why is this needed?
 	@sed -i -E 's/"sources":\["\.\.\//"sourceRoot":"..","sources":["/' \
 		lib/japanese-holidays.min.js.map
