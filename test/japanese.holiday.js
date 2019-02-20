@@ -20,7 +20,7 @@ var FurikaeStr = '振替休日';
 var staticHolidays = [
 // 天皇誕生日が 2/23 に移行
   {
-    'start' : 2020,
+    'start' : 2021,
     'end'   : 2999,
     'days'  : {
       1  : { 1 : '元日'},
@@ -34,6 +34,34 @@ var staticHolidays = [
         4  : 'みどりの日',
         5 : 'こどもの日'
       },
+	  8  : {11 : '山の日'},
+      11 : {
+        3 : '文化の日',
+        23 : '勤労感謝の日'
+      }
+    }
+  },
+// 天皇誕生日が 2/23 に移行
+  {
+    'start' : 2020,
+    'end'   : 2020,
+    'days'  : {
+      1  : { 1 : '元日'},
+      2  : {
+	    11 : '建国記念の日',
+		23 : '天皇誕生日',
+	  },
+      4  : {29 : '昭和の日'},
+      5  : {
+        3 : '憲法記念日',
+        4  : 'みどりの日',
+        5 : 'こどもの日'
+      },
+	  7  : {
+	   23 : '海の日',
+	   24 : 'スポーツの日'
+	  },
+	  8  : {10 : '山の日'},
       11 : {
         3 : '文化の日',
         23 : '勤労感謝の日'
@@ -53,6 +81,7 @@ var staticHolidays = [
         4  : 'みどりの日',
         5 : 'こどもの日'
       },
+	  8  : {11 : '山の日'},
       11 : {
         3 : '文化の日',
         23 : '勤労感謝の日'
@@ -62,8 +91,30 @@ var staticHolidays = [
 // 4/29 みどりの日 : 昭和の日 変更
 // みどりの日は5/4に移行
   {
-    'start' : 2007,
+    'start' : 2016,
     'end'   : 2018,
+    'days'  : {
+      1  : { 1 : '元日'},
+      2  : {11 : '建国記念の日'},
+      4  : {29 : '昭和の日'},
+      5  : {
+        3 : '憲法記念日',
+        4  : 'みどりの日',
+        5 : 'こどもの日'
+      },
+	  8  : {11 : '山の日'},
+      11 : {
+        3 : '文化の日',
+        23 : '勤労感謝の日'
+      },
+      12 : {23 : '天皇誕生日'}
+    }
+  },
+// 4/29 みどりの日 : 昭和の日 変更
+// みどりの日は5/4に移行
+  {
+    'start' : 2007,
+    'end'   : 2015,
     'days'  : {
       1  : { 1 : '元日'},
       2  : {11 : '建国記念の日'},
@@ -383,11 +434,18 @@ function getHolidays(year, mon, furikae) {
 
   if (year >= 2000) {
     if (mon == 1) {holidays[mondays[1]] = '成人の日';}
+  }
+  if ((year >= 2000)&&(year <= 2019)) {
     if (mon == 10){holidays[mondays[1]] = '体育の日';}
   }
+  if (year >= 2021) {
+    if (mon == 10){holidays[mondays[1]] = 'スポーツの日';}
+  }
   if (year >= 2003) {
-    if (mon == 7) {holidays[mondays[2]] = '海の日';}
     if (mon == 9) {holidays[mondays[2]] = '敬老の日';}
+  }
+  if ((year >= 2003)&&(year != 2020)) {
+    if (mon == 7) {holidays[mondays[2]] = '海の日';}
   }
   // 不定なもの
   if (mon == 3) {holidays[shunbun_day(year)] = '春分の日';}
@@ -489,11 +547,8 @@ for(var y=1949; y<2100; y++){
   Holidays.getHolidaysOf(y).forEach(function(h){
     var name = isHoliday(y, h.month, h.date, true);
 
-    // japanese.holiday.js で山の日とその振替休日が定義されていない
     // 2074/9/23 の秋分が正しく計算されない
-    if ( h.name=="山の日" || 
-         (h.month==8 && h.date==12 && h.name=="振替休日") ||
-         (y==2074 && h.month==9 && h.date==23 && h.name=="秋分の日") )
+    if ( y==2074 && h.month==9 && h.date==23 && h.name=="秋分の日") 
       return;
 	
 	// japanese.holiday.js は月末の国民の休日を検出できない
