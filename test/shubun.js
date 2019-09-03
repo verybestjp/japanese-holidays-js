@@ -40,7 +40,7 @@ const data = [
 ];
 
 const assert = require('assert');
-const Holidays = require('../lib/japanese-holidays.js');
+const Holidays = require('../lib/japanese-holidays.min.js');
 
 const shubun = Holidays.__forTest.shubunWithTime;
 

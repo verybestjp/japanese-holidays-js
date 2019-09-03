@@ -7,7 +7,7 @@
 */
 
 var assert = require('assert');
-var Holidays = require('../lib/japanese-holidays.js');
+var Holidays = require('../lib/japanese-holidays.min.js');
 
 /////////////////////////////////////////////////////// ここから japanese.holiday.js
 

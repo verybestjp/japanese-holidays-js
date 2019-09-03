@@ -1300,7 +1300,7 @@ const data = // holiday-jp の結果をいくつか修正した物
   [ 'Wed Nov 23 2050 00:00:00', '勤労感謝の日' ] ];
 
 const assert = require('assert');
-const Holidays = require('../lib/japanese-holidays.js');
+const Holidays = require('../lib/japanese-holidays.min.js');
 
 // holidays-jp の祝日が正しく祝日として判定されること
 data.forEach(function(h){

@@ -11,7 +11,7 @@ lib/japanese-holidays.min.js: src/japanese-holidays.coffee
 		--source-map filename=lib/japanese-holidays.min.js.map \
 		--source-map url=japanese-holidays.min.js.map \
 		-o lib/japanese-holidays.min.js \
-		--mangle --mangle-props
+		-mangle
 	@# Why is this needed?
 	@sed -i -E 's/"sources":\["\.\.\//"sourceRoot":"..","sources":["/' \
 		lib/japanese-holidays.min.js.map
